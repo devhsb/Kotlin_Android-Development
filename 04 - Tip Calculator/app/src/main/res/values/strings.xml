@@ -3,4 +3,6 @@
     <string name="calculate_tip_text">Calculate Tip</string>
     <string name="bill_amount_text">Bill Amount</string>
     <string name="tip_amount_text">"Tip Amount: %s"</string>
+    <string name="percentage_text">Parcentage</string>
+    <string name="round_text">Round it</string>
 </resources>
