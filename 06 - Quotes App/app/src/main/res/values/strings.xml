@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Quotes</string>
+    <string name="q1">Be yourself; everyone else is already taken.</string>
+    <string name="q2">So many books, so little time.</string>
+    <string name="q3">A room without books is like a body without a soul.</string>
+    <string name="q4">You only live once, but if you do it right, once is enough.</string>
+    <string name="q5">In three words I can sum up everything I\'ve learned about life: it goes on.</string>
+    <string name="q6">If you tell the truth, you don\'t have to remember anything.</string>
+</resources>
