@@ -1,4 +1,4 @@
-package com.hasib.superheroes 
+package com.hasib.superheroes
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
