@@ -1,6 +1,7 @@
 package com.hasib.unscamble.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,11 +17,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -31,11 +34,9 @@ import com.hasib.unscamble.R
 @Composable
 fun GameScreen() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-            .padding(dimensionResource(id = R.dimen.large_dimen)),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.padding(dimensionResource(id = R.dimen.large_dimen)),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = stringResource(id = R.string.app_name),
@@ -56,29 +57,27 @@ fun GameScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameIO(modifier: Modifier = Modifier) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
+    Card {
         Column(
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.medium_dimen)),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.medium_dimen))
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             // Score Card
-            Card(
-                colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentWidth(Alignment.End)
-            ) {
                 Text(
-                    modifier = Modifier.padding(
-                        vertical = dimensionResource(id = R.dimen.small_dimen),
-                        horizontal = dimensionResource(id = R.dimen.medium_dimen)
-                    ),
-                    text = "0/10"
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.primary)
+                        .clip(shape = MaterialTheme.shapes.medium)
+                        .padding(
+                            vertical = dimensionResource(id = R.dimen.small_dimen),
+                            horizontal = dimensionResource(id = R.dimen.medium_dimen)
+                        )
+                        .align(alignment = Alignment.End),
+                    text = "0/10",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White
                 )
-            }
             // Output Text
             Text(
                 modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.medium_dimen)),
@@ -100,6 +99,7 @@ fun GameIO(modifier: Modifier = Modifier) {
                 },
                 shape = MaterialTheme.shapes.large
             )
+
         }
     }
 }
