@@ -1,4 +1,4 @@
-package com.hasib.unscamble 
+package com.hasib.unscamble
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
