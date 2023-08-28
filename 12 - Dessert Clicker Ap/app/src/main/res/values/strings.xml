@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dessert Clicker</string>
+    <string name="solded_items">%s </string>
+    <string name="total_revenue">$ %s</string>
+</resources>
