@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.hasib.cupcake.R
+import com.hasib.cupcake.ui.Common.CupcakeAppBar
 import org.w3c.dom.Text
 
 @Composable
@@ -38,12 +39,14 @@ fun OrderScreen(
 ) {
     Scaffold(
         topBar = {
-            CupcakeAppBar()
+            CupcakeAppBar(title = stringResource(id = R.string.app_name))
         }
     ) { contentPadding ->
 
         Column(
-            modifier = Modifier.padding(contentPadding).fillMaxWidth(),
+            modifier = Modifier
+                .padding(contentPadding)
+                .fillMaxWidth(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -52,7 +55,9 @@ fun OrderScreen(
             Image(
                 painter = painterResource(id = R.drawable.cupcake),
                 contentDescription = stringResource(id = R.string.app_name),
-                modifier = Modifier.size(170.dp).padding(top = 30.dp)
+                modifier = Modifier
+                    .size(170.dp)
+                    .padding(top = 30.dp)
             )
 
             // order text
@@ -83,17 +88,3 @@ fun OrderButton(text: String, modifier: Modifier = Modifier) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CupcakeAppBar(){
-    TopAppBar(title = {
-        Text(
-            text = stringResource(id = R.string.app_name),
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-    },
-        colors = TopAppBarDefaults.largeTopAppBarColors(
-            MaterialTheme.colorScheme.primary
-        )
-    )
-}
