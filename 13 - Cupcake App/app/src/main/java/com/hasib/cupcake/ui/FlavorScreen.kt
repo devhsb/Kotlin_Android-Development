@@ -1,6 +1,8 @@
 package com.hasib.cupcake.ui
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -26,26 +29,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hasib.cupcake.ui.Common.CupcakeAppBar
-import com.hasib.cupcake.ui.Data.flavors
+import com.hasib.cupcake.ui.Data.Flavors
 import org.w3c.dom.Text
 
 
 @Composable
 fun FlavorScreen(){
-    FlavorUi()
+    FlavorUi(
+        appBarTitle = "Choose Flavor",
+        radioButtons = Flavors().flavors
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FlavorUi(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    appBarTitle: String,
+    radioButtons: List<String>
 ) {
     var selectedGender by rememberSaveable {
         mutableStateOf("")
     }
+    var nextButtonEnabled by rememberSaveable {
+        mutableStateOf(false)
+    }
     Scaffold(
         topBar = {
-            CupcakeAppBar(title = "Choose Flavor")
+            CupcakeAppBar(title = appBarTitle)
         }
     ) { contentPadding ->
 
@@ -54,11 +65,18 @@ fun FlavorUi(
         ) {
             Column(
                 modifier = Modifier.padding(10.dp)
+                    .verticalScroll(enabled = true, state = ScrollState(1))
             ) {
-                flavors.forEach { flavor ->
+                radioButtons.forEach { button ->
                     FlavorRadioButton(
-                        flavor = flavor, selected = selectedGender == flavor,
-                        onClick = { selectedGender = flavor }
+                        flavor = button, selected = selectedGender == button,
+                        onClick = {
+                            selectedGender = button
+                            if(!nextButtonEnabled){
+                                nextButtonEnabled = true
+                            }
+
+                        }
                     )
                 }
                 //spacer
@@ -94,7 +112,8 @@ fun FlavorUi(
                         modifier = Modifier
                             .weight(1f)
                             .padding(10.dp),
-                        onClick = { }
+                        onClick = { },
+                        enabled = nextButtonEnabled
                     ) {
                         Text(text = "Next")
                     }
