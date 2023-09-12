@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -27,14 +28,16 @@ fun SummaryScreen(
     subtotal: Int,
     quantity: String,
     flavor: String,
-    pickupDate: String
+    pickupDate: String,
+    onShareOrder: () -> Unit
     ){
     SummaryUi(
         onCanelButton = onCanelButton,
         subtotal = subtotal,
         quantity = quantity,
         flavor = flavor,
-        pickupDate = pickupDate
+        pickupDate = pickupDate,
+        onShareOrder = onShareOrder
 
     )
 }
@@ -46,7 +49,8 @@ fun SummaryUi(
     subtotal: Int,
     quantity: String,
     flavor: String,
-    pickupDate: String
+    pickupDate: String,
+    onShareOrder: () -> Unit
 ) {
     Column(
         modifier = Modifier.padding(20.dp)
@@ -64,7 +68,7 @@ fun SummaryUi(
             style = MaterialTheme.typography.headlineMedium
         )
 
-        SummaryButton(modifier = Modifier.weight(1f), onCanelButton = onCanelButton)
+        SummaryButton(modifier = Modifier.weight(1f), onCanelButton = onCanelButton, onShareOrder = onShareOrder)
     }
 }
 
@@ -86,22 +90,22 @@ fun SummaryComponent(
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 5.dp)
         )
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(Color.Gray))
+        Divider(
+            thickness = 1.dp,
+            modifier = Modifier.padding(top = 10.dp)
+        )
     }
 }
 
 @Composable
 fun SummaryButton(
     modifier: Modifier = Modifier,
-    onCanelButton: () -> Unit = {}
+    onCanelButton: () -> Unit = {},
+    onShareOrder: () -> Unit
 ) {
     Column {
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onShareOrder,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Send Order to Another App", textAlign = TextAlign.Center)
